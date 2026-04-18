@@ -37,10 +37,11 @@ LOGO_LINES = [
     " ██████╔╝█████╗  ██╔██╗ ██║   ██║   ███████║██║   ██║██║   ██║███████╗█████╗  ",
     " ██╔═══╝ ██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██║   ██║██║   ██║╚════██║██╔══╝  ",
     " ██║     ███████╗██║ ╚████║   ██║   ██║  ██║╚██████╔╝╚██████╔╝███████║███████╗",
-    " ╚═╝     ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝"
+    " ╚═╝     ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝",
 ]
 LOGO_HEIGHT = len(LOGO_LINES)
-HEADER_HEIGHT = LOGO_HEIGHT + 2   # logo + breadcrumb line + divider
+LOGO_WIDTH  = max(len(l) for l in LOGO_LINES)
+HEADER_HEIGHT = LOGO_HEIGHT + 3   # 1 top padding + logo + breadcrumb + divider
 STATUS_HEIGHT = 3
 LEFT_WIDTH_RATIO = 0.42            # fraction of screen width for menu list
 
@@ -217,25 +218,43 @@ class TUI:
     # ── Header ─────────────────────────────────────────────────────────
     def _draw_header(self):
         s = self.stdscr
+        bg        = get_color("panel_bg")
         logo_color = get_color("logo")
 
-        for i, line in enumerate(LOGO_LINES):
-            if i < self.h:
-                try:
-                    s.addstr(i, 0, line[:self.w], logo_color | curses.A_BOLD)
-                except curses.error:
-                    pass
+        # ── Fill the entire screen with the background color first ──────
+        # Curses only paints cells that receive a character; anything not
+        # explicitly written keeps the terminal's default background.
+        # Stamping a space with our color pair on every cell fixes that.
+        for row in range(self.h):
+            try:
+                s.addstr(row, 0, " " * self.w, bg)
+            except curses.error:
+                pass   # bottom-right cell always raises — safe to ignore
 
-        # Breadcrumb
-        bc_y = LOGO_HEIGHT
+        # ── Row 0: empty top padding ─────────────────────────────────────
+        # (already filled with bg above, nothing extra needed)
+
+        # ── Rows 1‥LOGO_HEIGHT: centered logo ───────────────────────────
+        logo_x = max(0, (self.w - LOGO_WIDTH) // 2)
+        for i, line in enumerate(LOGO_LINES):
+            row = i + 1          # +1 for the top padding row
+            if row >= self.h:
+                break
+            try:
+                s.addstr(row, logo_x, line[:self.w - logo_x], logo_color | curses.A_BOLD)
+            except curses.error:
+                pass
+
+        # ── Breadcrumb ───────────────────────────────────────────────────
+        bc_y = LOGO_HEIGHT + 1   # logo rows (1‥LOGO_HEIGHT) + 1 padding row
         breadcrumb = self._breadcrumb()
         try:
-            s.addstr(bc_y, 0, " " + breadcrumb[:self.w - 2], get_color("breadcrumb"))
+            s.addstr(bc_y, 0, (" " + breadcrumb)[:self.w], get_color("breadcrumb"))
         except curses.error:
             pass
 
-        # Horizontal divider
-        div_y = LOGO_HEIGHT + 1
+        # ── Horizontal divider ───────────────────────────────────────────
+        div_y = bc_y + 1
         try:
             s.addstr(div_y, 0, "─" * self.w, get_color("divider"))
         except curses.error:
