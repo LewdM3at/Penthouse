@@ -47,7 +47,7 @@ def init_colors():
 
     _COLOR_MAP.update({
         # Logo
-        "logo":            _pair(46,  BG),      # green on black
+        "logo":            _pair(135,  BG),      # green on black
 
         # Breadcrumb / nav
         "breadcrumb":      _pair(244, BG),      # grey
@@ -62,7 +62,7 @@ def init_colors():
         "selected":        _pair(0,   46),      # black on green
 
         # Category colour tags
-        "wifi":            _pair(46,  BG),      # bright green
+        "wifi":            _pair(120,  BG),      # bright green
         "subghz":          _pair(208, BG),      # orange
         "bt":              _pair(51,  BG),      # cyan
         "nfc":             _pair(201, BG),      # magenta
