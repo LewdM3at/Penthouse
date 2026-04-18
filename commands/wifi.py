@@ -32,23 +32,31 @@ def _run_interactive(cmd: str):
 
 # ─────────────────────────────────────────── wifite ───────────────────
 
+def auto_audit():
+    _run_interactive(f"sudo wifite --daemon")
+    return True
+
 def wifite_handshake():
-    iface = _iface("Monitor interface: ", "wlan0mon")
-    _run_interactive(f"wifite --interface {shlex.quote(iface)} --wpa --kill")
+    _run_interactive(f"sudo wifite --no-pmkid --no-wps --daemon")
     return True
 
 
 def wifite_wps():
-    iface = _iface("Monitor interface: ", "wlan0mon")
-    _run_interactive(f"wifite --interface {shlex.quote(iface)} --wps --kill")
+    _run_interactive(f"sudo wifite --wps --kill")
     return True
 
 
 def wifite_pmkid():
-    iface = _iface("Monitor interface: ", "wlan0mon")
-    _run_interactive(f"wifite --interface {shlex.quote(iface)} --pmkid --kill")
+    _run_interactive(f"sudo wifite --pmkid --daemon")
     return True
 
+def wifite_pixiedust():
+    _run_interactive(f"sudo wifite --pixie --no-pmkid --wps-only --daemon")
+    return True
+
+def wifite_pin():
+    _run_interactive(f"sudo wifite --no-pixie --no-pmkid --wps-only --daemon")
+    return True
 
 # ─────────────────────────────────────────── aircrack-ng ──────────────
 
