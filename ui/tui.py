@@ -188,10 +188,10 @@ class TUI:
         try:
             result = item.execute()
             if result:
-                input(f"\n[Done] Press Enter to return…")
+                input(f"\n[Done] Press Enter to return to Penthouse…")
         except Exception as exc:
             print(f"\n[ERROR] {exc}")
-            input("Press Enter to return…")
+            input("Press Enter to return to Penthouse…")
         finally:
             curses.reset_prog_mode()
             self.stdscr.refresh()
