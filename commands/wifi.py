@@ -42,7 +42,7 @@ def wifite_handshake():
 
 
 def wifite_wps():
-    _run_interactive(f"sudo wifite --wps --kill")
+    _run_interactive(f"sudo wifite --wps --daemon")
     return True
 
 
