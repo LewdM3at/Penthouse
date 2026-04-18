@@ -35,13 +35,13 @@ def _wifi_menu() -> MenuItem:
             MenuItem(
                 label="Wifite",
                 description="Automated wireless auditor",
-                icon="⚡",
+                icon=" ",
                 color_tag=COLOR_WIFI,
                 children=[
                     MenuItem(
                         label="Handshake Capture",
                         description="Capture WPA/WPA2 handshakes (wifite --wpa)",
-                        icon="🤝",
+                        icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_handshake,
                         requires=["wifite"],
@@ -50,7 +50,7 @@ def _wifi_menu() -> MenuItem:
                     MenuItem(
                         label="WPS Attack",
                         description="Attack WPS-enabled routers (wifite --wps)",
-                        icon="🔑",
+                        icon="󱊨 ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_wps,
                         requires=["wifite"],
@@ -59,7 +59,7 @@ def _wifi_menu() -> MenuItem:
                     MenuItem(
                         label="PMKID Attack",
                         description="Clientless PMKID hash capture",
-                        icon="🧬",
+                        icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_pmkid,
                         requires=["wifite", "hcxdumptool"],
@@ -70,7 +70,7 @@ def _wifi_menu() -> MenuItem:
             MenuItem(
                 label="Aircrack-ng Suite",
                 description="Classic 802.11 toolkit",
-                icon="💨",
+                icon=" ",
                 color_tag=COLOR_WIFI,
                 children=[
                     MenuItem(
