@@ -138,11 +138,8 @@ class TUI:
         return True
 
     def _confirm_quit(self) -> bool:
-        """Show quit prompt; return False if user confirms."""
-        if not self.nav_stack:
-            ans = self._yes_no_dialog("Quit Penthouse?")
-            return not ans
-        return True
+        ans = self._yes_no_dialog("Quit Penthouse?")
+        return not ans
 
     # ================================================================== #
     #  Scroll clamping
