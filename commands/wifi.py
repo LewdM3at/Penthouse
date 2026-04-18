@@ -40,12 +40,6 @@ def wifite_handshake():
     _run_interactive(f"sudo wifite --no-pmkid --no-wps --daemon")
     return True
 
-
-def wifite_wps():
-    _run_interactive(f"sudo wifite --wps --daemon")
-    return True
-
-
 def wifite_pmkid():
     _run_interactive(f"sudo wifite --pmkid --daemon")
     return True
