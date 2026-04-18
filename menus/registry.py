@@ -44,7 +44,7 @@ def _wifi_menu() -> MenuItem:
                         icon="󱜙 ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.auto_audit,
-                        requires=["wifite", "hcxtools", "reaver", "aircrack-ng", "ieee-data", "net-tools", "tshark"],
+                        requires=["wifite"],
                         confirm=True,
                     ),
                     MenuItem(
@@ -62,7 +62,7 @@ def _wifi_menu() -> MenuItem:
                         icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_pmkid,
-                        requires=["wifite", "hcxtools"],
+                        requires=["wifite"],
                         confirm=True,
                     ),
                     MenuItem(
