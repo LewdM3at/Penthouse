@@ -140,7 +140,7 @@ class TUI:
     def _confirm_quit(self) -> bool:
         """Show quit prompt; return False if user confirms."""
         if not self.nav_stack:
-            ans = self._yes_no_dialog("Quit PXnx?")
+            ans = self._yes_no_dialog("Quit Penthouse?")
             return not ans
         return True
 
@@ -246,7 +246,7 @@ class TUI:
                 pass
 
         # ── Breadcrumb ───────────────────────────────────────────────────
-        bc_y = LOGO_HEIGHT + 1   # logo rows (1‥LOGO_HEIGHT) + 1 padding row
+        bc_y = LOGO_HEIGHT + 2   # logo rows (1‥LOGO_HEIGHT) + 2 padding row
         breadcrumb = self._breadcrumb()
         try:
             s.addstr(bc_y, 0, (" " + breadcrumb)[:self.w], get_color("breadcrumb"))
