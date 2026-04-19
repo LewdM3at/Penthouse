@@ -321,7 +321,7 @@ class TUI:
         unavail_marker = " ✗" if item.is_leaf and not available else "  "
 
         if selected:
-            base_attr = get_color("selected") | curses.A_BOLD | curses.A_REVERSE
+            base_attr = get_color(f"selected_{item.color_tag}") | curses.A_BOLD | curses.A_REVERSE
         else:
             base_attr = get_color(item.color_tag)
             if not available and item.is_leaf:

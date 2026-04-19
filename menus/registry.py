@@ -12,10 +12,11 @@ Leaf nodes carry an `action` callable from the actions package.
 
 from menus.node import (
     MenuItem,
-    COLOR_WIFI, COLOR_SUBGHZ, COLOR_RADIO,
+    COLOR_WIFI, COLOR_BLUETOOTH, COLOR_SUBGHZ, COLOR_RADIO,
     COLOR_NFC, COLOR_BT, COLOR_NET, COLOR_SYSTEM, COLOR_DEFAULT,
 )
 import commands.wifi     as wifi_commands
+#import commands.bluetooth as bt_commands
 #import commands.radio    as radio_commands
 #import commands.nfc      as nfc_commands
 #import commands.network  as net_commands
@@ -153,7 +154,51 @@ def _wifi_menu() -> MenuItem:
         ],
     )
 
-
+# ═══════════════════════════════════════════════════════════════════════ #
+#  Bluetooth
+# ═══════════════════════════════════════════════════════════════════════ #
+def _bluetooth_menu() -> MenuItem:
+    return MenuItem(
+        label="󰂯  Bluetooth",
+        description="Bluetooth attack & analysis tools",
+        icon="▸",
+        color_tag=COLOR_BLUETOOTH,
+        children=[
+            MenuItem(
+                label="BlueZ",
+                description="Automated wireless auditor",
+                icon=" ",
+                color_tag=COLOR_WIFI,
+                children=[
+                    MenuItem(
+                        label="Automated Audit",
+                        description="Run automated wireless audit (sudo wifite --daemon)",
+                        icon="󱜙 ",
+                        color_tag=COLOR_WIFI,
+                        action=wifi_commands.auto_audit,
+                        requires=["wifite"],
+                        confirm=True,
+                    ),
+                ],
+            ),
+            MenuItem(
+                label="Aircrack-ng Suite",
+                description="Classic 802.11 toolkit",
+                icon=" ",
+                color_tag=COLOR_WIFI,
+                children=[
+                    MenuItem(
+                        label="Monitor Mode ON",
+                        description="Put interface into monitor mode (airmon-ng start)",
+                        icon="📡",
+                        color_tag=COLOR_WIFI,
+                        action=wifi_commands.airmon_start,
+                        requires=["airmon-ng"],
+                    ),
+                ],
+            ),
+        ],
+    )
 
 # ═══════════════════════════════════════════════════════════════════════ #
 #  PUBLIC API
@@ -161,7 +206,8 @@ def _wifi_menu() -> MenuItem:
 def build_menu_tree():
     """Return the ordered list of top-level menu items."""
     return [
-        _wifi_menu()
+        _wifi_menu(),
+        _bluetooth_menu(),
         #_subghz_menu(),
         #_24ghz_menu(),
         #_nfc_menu(),

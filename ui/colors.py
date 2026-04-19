@@ -58,18 +58,20 @@ def init_colors():
         # Panel background
         "panel_bg":        _pair(244, BG),
 
-        # Selected item (highlight bar)
-        "selected":        _pair(0,   46),      # black on green
+        
 
         # Category colour tags
-        "wifi":            _pair(120,  BG),      # bright green
-        "subghz":          _pair(208, BG),      # orange
-        "bt":              _pair(51,  BG),      # cyan
-        "nfc":             _pair(201, BG),      # magenta
-        "net":             _pair(27,  BG),      # blue
-        "radio":           _pair(208, BG),      # orange (same as subghz)
-        "system":          _pair(220, BG),      # yellow
-        "default":         _pair(252, BG),      # near-white
+        "wifi":                 _pair(120, BG),      # light green
+        "selected_wifi":        _pair(0,   46),      # bright green
+        "bluetooth":            _pair(45,  BG),      # light blue
+        "selected_bluetooth":   _pair(0,   33),      # bright blue
+        "subghz":               _pair(208, BG),      # orange
+        "bt":                   _pair(51,  BG),      # cyan
+        "nfc":                  _pair(201, BG),      # magenta
+        "net":                  _pair(27,  BG),      # blue
+        "radio":                _pair(208, BG),      # orange (same as subghz)
+        "system":               _pair(220, BG),      # yellow
+        "default":              _pair(252, BG),      # near-white
 
         # Availability
         "unavailable":     _pair(238, BG),      # greyed-out

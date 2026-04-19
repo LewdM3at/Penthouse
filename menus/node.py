@@ -9,14 +9,15 @@ from typing import Optional, List, Callable
 
 
 # Color tags map to curses color pair indices (defined in tui.py)
-COLOR_WIFI    = "wifi"
-COLOR_SUBGHZ  = "subghz"
-COLOR_RADIO   = "radio"
-COLOR_NFC     = "nfc"
-COLOR_BT      = "bt"
-COLOR_NET     = "net"
-COLOR_SYSTEM  = "system"
-COLOR_DEFAULT = "default"
+COLOR_WIFI      = "wifi"
+COLOR_BLUETOOTH = "bluetooth"
+COLOR_SUBGHZ    = "subghz"
+COLOR_RADIO     = "radio"
+COLOR_NFC       = "nfc"
+COLOR_BT        = "bt"
+COLOR_NET       = "net"
+COLOR_SYSTEM    = "system"
+COLOR_DEFAULT   = "default"
 
 
 @dataclass
