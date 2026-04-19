@@ -118,7 +118,11 @@ def kismet_stop_daemon():
     if not _kismet_running():
         print("\n[!] Kismet server is not running.\n")
         return True
-    _run_interactive(f"kismet -c interfacename --daemonize")
+    import signal, time
+    os.system("sudo pkill -TERM -x kismet")
+    time.sleep(3)
+    if _kismet_running():
+        os.system("sudo pkill -KILL -x kismet")
     return True
 
 def kismet_connect():
