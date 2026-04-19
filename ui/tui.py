@@ -82,6 +82,8 @@ class TUI:
             if not self._handle_key(key):
                 break
 
+        os.system("clear" if os.name == "posix" else "cls")
+
     # ================================================================== #
     #  Dimensions
     # ================================================================== #
@@ -139,8 +141,6 @@ class TUI:
 
     def _confirm_quit(self) -> bool:
         ans = self._yes_no_dialog("Quit Penthouse?")
-        if ans:
-            os.system("clear" if os.name == "posix" else "cls")
         return not ans
 
     # ================================================================== #
