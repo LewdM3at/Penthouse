@@ -111,7 +111,7 @@ def kismet_start_daemon():
     iface = _pick_wireless_iface()
     if not iface:
         return True  # just go back to menu
-    os.system(f"kismet -c {shlex.quote(iface)} --daemonize")
+    os.system(f"sudo kismet -c {shlex.quote(iface)} --daemonize")
     return False
 
 def kismet_stop_daemon():
