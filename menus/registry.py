@@ -4,7 +4,7 @@ from menus.node import (
     COLOR_RFID, COLOR_BT, COLOR_NET, COLOR_SYSTEM, COLOR_DEFAULT,
 )
 import commands.wifi     as wifi_commands
-#import commands.bluetooth as bt_commands
+import commands.bluetooth as bt_commands
 #import commands.radio    as radio_commands
 import commands.rfid     as rfid_commands
 #import commands.network  as net_commands
