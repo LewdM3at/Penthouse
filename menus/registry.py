@@ -120,12 +120,12 @@ def _wifi_menu() -> MenuItem:
                 ],
             ),
             MenuItem(
-                label="Hostapd Evil Twin",
-                description="Create a rogue AP with hostapd-wpe",
-                icon="👹",
+                label="Evilginx",
+                description="Evilginx is a man-in-the-middle attack framework used for phishing login credentials along with session cookies, which in turn allows to bypass 2-factor authentication protection.",
+                icon="󱚝 ",
                 color_tag=COLOR_WIFI,
-                action=wifi_commands.evil_twin,
-                requires=["hostapd-wpe"],
+                action=wifi_commands.evilginx_start,
+                requires=["evilginx"],
                 confirm=True,
             ),
             MenuItem(

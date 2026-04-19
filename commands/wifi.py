@@ -151,6 +151,18 @@ def kismet_connect():
         return True
     return False
 
+# ─────────────────────────────────────────── Evilginx ─────────────────
+
+def evilginx_start():
+    _clear_screen()
+    _run_interactive(f"sudo evilginx")
+    return True
+
+# ─────────────────────────────────────────── Airgeddon ────────────────
+
+def airgeddon_start():
+    print("Hello World")
+    return True
 
 
 # ─────────────────────────────────────────── aircrack-ng ──────────────
