@@ -139,38 +139,14 @@ def _bluetooth_menu() -> MenuItem:
         color_tag=COLOR_BLUETOOTH,
         children=[
             MenuItem(
-                label="BlueZ",
-                description="Automated wireless auditor",
-                icon=" ",
-                color_tag=COLOR_WIFI,
-                children=[
-                    MenuItem(
-                        label="Automated Audit",
-                        description="Run automated wireless audit (sudo wifite --daemon)",
-                        icon="󱜙 ",
-                        color_tag=COLOR_WIFI,
-                        action=wifi_commands.auto_audit,
-                        requires=["wifite"],
-                        confirm=True,
-                    ),
-                ],
-            ),
-            MenuItem(
-                label="Aircrack-ng Suite",
-                description="Classic 802.11 toolkit",
-                icon=" ",
-                color_tag=COLOR_WIFI,
-                children=[
-                    MenuItem(
-                        label="Monitor Mode ON",
-                        description="Put interface into monitor mode (airmon-ng start)",
-                        icon="📡",
-                        color_tag=COLOR_WIFI,
-                        action=wifi_commands.airmon_start,
-                        requires=["airmon-ng"],
-                    ),
-                ],
-            ),
+                label="Bettercap",
+                description="The Swiss Army knife for WiFi, Bluetooth Low Energy, wireless HID hijacking, CAN-bus and IPv4 and IPv6 networks reconnaissance and MITM attacks.",
+                icon="󰂯 ",
+                color_tag=COLOR_BLUETOOTH,
+                action=bt_commands.bettercap_start,
+                requires=["bettercap"],
+                confirm=True,
+            )
         ],
     )
 
