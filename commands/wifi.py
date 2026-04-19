@@ -20,6 +20,9 @@ import sys
 
 # ─────────────────────────────────────────── helpers ──────────────────
 
+def _clear_screen():
+    os.system("clear" if os.name == "posix" else "cls")
+
 def _iface(prompt="Interface (e.g. wlan0): ", default="wlan0") -> str:
     return input(f"{prompt}[{default}] ") or default
 
@@ -29,6 +32,7 @@ def _pick_wireless_iface() -> str | None:
     No external tools needed — reads kernel sysfs directly.
     Returns the chosen interface name, or None if user cancels.
     """
+    _clear_screen()
     sys_net = "/sys/class/net"
     wireless = []
  
@@ -105,6 +109,7 @@ def kismet_status() -> str:
     return "● RUNNING" if _kismet_running() else "○ NOT RUNNING"
 
 def kismet_start_daemon():
+    _clear_screen()
     if _kismet_running():
         print("\n[!] Kismet server is already running.\n")
         return True
@@ -115,6 +120,7 @@ def kismet_start_daemon():
     return False
 
 def kismet_stop_daemon():
+    _clear_screen()
     if not _kismet_running():
         print("\n[!] Kismet server is not running.\n")
         return True
