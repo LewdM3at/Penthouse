@@ -139,10 +139,12 @@ def kismet_stop_daemon():
     return True
 
 def kismet_connect():
+    _clear_screen()
     if not _kismet_running():
         print("\n[!] Kismet is not running. Start the server first.\n")
         return True
     import webbrowser, shutil
+    print("\n[*] Connecting to Kismet server at http://localhost:2501 ...\n")
     opened = webbrowser.open("http://localhost:2501")
     if not opened:
         print("\n[*] Could not open browser. Navigate to: http://localhost:2501\n")
