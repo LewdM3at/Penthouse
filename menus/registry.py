@@ -36,7 +36,7 @@ def _wifi_menu() -> MenuItem:
             MenuItem(
                 label="Wifite",
                 description="Automated wireless auditor",
-                icon=" ",
+                icon="󰭥 ",
                 color_tag=COLOR_WIFI,
                 children=[
                     MenuItem(
@@ -89,7 +89,7 @@ def _wifi_menu() -> MenuItem:
             MenuItem(
                 label="Kismet",
                 description="Kismet is a sniffer, WIDS, and wardriving tool for Wi-Fi, Bluetooth, Zigbee, RF, and more, which runs on Linux and macOS.",
-                icon=" ",
+                icon=" ",
                 color_tag=COLOR_WIFI,
                 status_factory=wifi_commands.kismet_status,
                 children=[
