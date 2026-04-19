@@ -79,22 +79,27 @@ def _run_interactive(cmd: str):
 # ─────────────────────────────────────────── Wifite ───────────────────
 
 def auto_audit():
+    _clear_screen()
     _run_interactive(f"sudo wifite --daemon")
     return True
 
 def wifite_handshake():
+    _clear_screen()
     _run_interactive(f"sudo wifite --no-pmkid --no-wps --daemon")
     return True
 
 def wifite_pmkid():
+    _clear_screen()
     _run_interactive(f"sudo wifite --pmkid --daemon")
     return True
 
 def wifite_pixiedust():
+    _clear_screen()
     _run_interactive(f"sudo wifite --pixie --no-pmkid --wps-only --daemon")
     return True
 
 def wifite_pin():
+    _clear_screen()
     _run_interactive(f"sudo wifite --no-pixie --no-pmkid --wps-only --daemon")
     return True
 
