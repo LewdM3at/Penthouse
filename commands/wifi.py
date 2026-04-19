@@ -161,7 +161,8 @@ def evilginx_start():
 # ─────────────────────────────────────────── Airgeddon ────────────────
 
 def airgeddon_start():
-    print("Hello World")
+    _clear_screen()
+    _run_interactive(f"sudo airgeddon")
     return True
 
 

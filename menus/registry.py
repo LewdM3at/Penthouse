@@ -129,11 +129,13 @@ def _wifi_menu() -> MenuItem:
                 confirm=True,
             ),
             MenuItem(
-                label="WiFi Info (iwconfig)",
-                description="Show current wireless interface info",
-                icon="ℹ",
+                label="Airgeddon",
+                description="This is a multi-use bash script for Linux systems to audit wireless networks."
+                icon="󱚝 ",
                 color_tag=COLOR_WIFI,
-                action=wifi_commands.iwconfig_info,
+                action=wifi_commands.airgeddon_start,
+                requires=["airgeddon"],
+                confirm=True,
             ),
         ],
     )
