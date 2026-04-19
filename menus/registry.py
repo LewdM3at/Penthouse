@@ -110,8 +110,8 @@ def _wifi_menu() -> MenuItem:
                         requires=["kismet"],
                     ),
                     MenuItem(
-                        label="Stop Kismet Server",
-                        description="Stop the Kismet server",
+                        label="Connect to Kismet Server",
+                        description="Connect to the running Kismet server",
                         icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.kismet_connect,
