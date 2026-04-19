@@ -105,13 +105,19 @@ def kismet_status() -> str:
     return "● RUNNING" if _kismet_running() else "○ NOT RUNNING"
 
 def kismet_start_daemon():
+    if _kismet_running():
+        print("\n[!] Kismet server is already running.\n")
+        return True
     iface = _pick_wireless_iface()
     if not iface:
         return True  # just go back to menu
-    _run_interactive(f"kismet -c {shlex.quote(iface)} --daemonize")
-    return True
+    os.system(f"kismet -c {shlex.quote(iface)} --daemonize")
+    return False
 
 def kismet_stop_daemon():
+    if not _kismet_running():
+        print("\n[!] Kismet server is not running.\n")
+        return True
     _run_interactive(f"kismet -c interfacename --daemonize")
     return True
 
