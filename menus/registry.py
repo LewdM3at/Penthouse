@@ -1,24 +1,12 @@
-"""
-menus/registry.py
-Central place where every menu item is declared.
-Add / remove / reorder items here to customise the launcher.
-
-Structure:
-    build_menu_tree() -> List[MenuItem]   (top-level items)
-
-Each top-level item can nest children arbitrarily deep.
-Leaf nodes carry an `action` callable from the actions package.
-"""
-
 from menus.node import (
     MenuItem,
     COLOR_WIFI, COLOR_BLUETOOTH, COLOR_SUBGHZ, COLOR_RADIO,
-    COLOR_NFC, COLOR_BT, COLOR_NET, COLOR_SYSTEM, COLOR_DEFAULT,
+    COLOR_RFID, COLOR_BT, COLOR_NET, COLOR_SYSTEM, COLOR_DEFAULT,
 )
 import commands.wifi     as wifi_commands
 #import commands.bluetooth as bt_commands
 #import commands.radio    as radio_commands
-#import commands.nfc      as nfc_commands
+import commands.rfid     as rfid_commands
 #import commands.network  as net_commands
 #import commands.system   as sys_commands
 
@@ -187,6 +175,29 @@ def _bluetooth_menu() -> MenuItem:
     )
 
 # ═══════════════════════════════════════════════════════════════════════ #
+#  RFID
+# ═══════════════════════════════════════════════════════════════════════ #
+
+def _rfid_menu() -> MenuItem:
+    return MenuItem(
+        label="󰎘  RFID",
+        description="RFID attack & analysis tools",
+        icon="▸",
+        color_tag=COLOR_RFID,
+        children=[
+            MenuItem(
+                label="Chameleon Ultra",
+                description="The new generation chameleon based on NRF52840 makes the performance of card emulation more stable. And gave the chameleon the ability to read, write, and decrypt cards. ",
+                icon="󰎘 ",
+                color_tag=COLOR_RFID,
+                action=rfid_commands.chameleon_start,
+                requires=["chameleonultragui"],
+                confirm=True,
+            ),
+        ],
+    )
+
+# ═══════════════════════════════════════════════════════════════════════ #
 #  PUBLIC API
 # ═══════════════════════════════════════════════════════════════════════ #
 def build_menu_tree():
@@ -194,9 +205,9 @@ def build_menu_tree():
     return [
         _wifi_menu(),
         _bluetooth_menu(),
+        _rfid_menu(),
         #_subghz_menu(),
         #_24ghz_menu(),
-        #_nfc_menu(),
         #_network_menu(),
         #_system_menu(),
     ]

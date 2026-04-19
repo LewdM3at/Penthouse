@@ -1,17 +1,3 @@
-"""
-actions/wifi.py
-All callable actions related to WiFi / 802.11 tooling.
-
-Each function is invoked by TUI._run_action() after curses is suspended,
-so stdout/stdin work normally. Print whatever you like.
-
-Convention:
-  - Use os.system() for interactive tools that need a full terminal.
-  - Use subprocess.run() when you want to capture & display output.
-  - Return a truthy value if you want TUI to pause after completion
-    so the user can read the output before returning to the menu.
-"""
-
 import os
 import subprocess
 import shlex

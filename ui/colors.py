@@ -67,7 +67,8 @@ def init_colors():
         "selected_bluetooth":   _pair(0,   33),      # bright blue
         "subghz":               _pair(208, BG),      # orange
         "bt":                   _pair(51,  BG),      # cyan
-        "nfc":                  _pair(201, BG),      # magenta
+        "rfid":                 _pair(213, BG),      # magenta
+        "selected_rfid":        _pair(0,   207),     # bright magenta
         "net":                  _pair(27,  BG),      # blue
         "radio":                _pair(208, BG),      # orange (same as subghz)
         "system":               _pair(220, BG),      # yellow
