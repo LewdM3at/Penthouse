@@ -23,6 +23,48 @@ import sys
 def _iface(prompt="Interface (e.g. wlan0): ", default="wlan0") -> str:
     return input(f"{prompt}[{default}] ") or default
 
+def _pick_wireless_iface() -> str | None:
+    """
+    Discover wireless interfaces by checking /sys/class/net/<iface>/wireless.
+    No external tools needed — reads kernel sysfs directly.
+    Returns the chosen interface name, or None if user cancels.
+    """
+    sys_net = "/sys/class/net"
+    wireless = []
+ 
+    for iface in sorted(os.listdir(sys_net)):
+        if os.path.isdir(os.path.join(sys_net, iface, "wireless")):
+            # Check if it's already in monitor mode by reading operstate / type
+            # A monitor interface typically has its name ending in 'mon'
+            # or we can read /sys/class/net/<iface>/type — value 801 = monitor
+            type_file = os.path.join(sys_net, iface, "type")
+            try:
+                with open(type_file) as f:
+                    iface_type = f.read().strip()
+                mode = "monitor" if iface_type == "801" else "managed"
+            except OSError:
+                mode = "unknown"
+            wireless.append((iface, mode))
+ 
+    if not wireless:
+        print("\n[!] No wireless interfaces found.\n")
+        return None
+ 
+    print("\n  Wireless interfaces:\n")
+    for i, (iface, mode) in enumerate(wireless):
+        tag = " [monitor]" if mode == "monitor" else ""
+        print(f"  [{i}] {iface}{tag}")
+ 
+    print("\n  [q] Cancel\n")
+ 
+    while True:
+        choice = input("  Select interface: ").strip().lower()
+        if choice == "q":
+            return None
+        if choice.isdigit() and int(choice) < len(wireless):
+            return wireless[int(choice)][0]
+        print("  Invalid choice, try again.")
+
 
 def _run_interactive(cmd: str):
     """Run a command in the current terminal (interactive)."""
@@ -30,7 +72,7 @@ def _run_interactive(cmd: str):
     os.system(cmd)
 
 
-# ─────────────────────────────────────────── wifite ───────────────────
+# ─────────────────────────────────────────── Wifite ───────────────────
 
 def auto_audit():
     _run_interactive(f"sudo wifite --daemon")
@@ -50,6 +92,22 @@ def wifite_pixiedust():
 
 def wifite_pin():
     _run_interactive(f"sudo wifite --no-pixie --no-pmkid --wps-only --daemon")
+    return True
+
+# ─────────────────────────────────────────── Kismet ───────────────────
+
+def kismet_start_daemon():
+    iface = _pick_wireless_iface()
+    if not iface:
+        return True  # just go back to menu
+    _run_interactive(f"kismet -c {shlex.quote(iface)} --daemonize")
+    return True
+
+def connect_to_kismet():
+
+
+def stop_kismet_daemon():
+    _run_interactive(f"kismet -c interfacename --daemonize")
     return True
 
 # ─────────────────────────────────────────── aircrack-ng ──────────────
