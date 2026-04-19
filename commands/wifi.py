@@ -125,9 +125,11 @@ def kismet_stop_daemon():
         print("\n[!] Kismet server is not running.\n")
         return True
     import signal, time
+    print("\n[*] Trying to stop Kismet server with SIGTERM...\n")
     os.system("sudo pkill -TERM -x kismet")
     time.sleep(3)
     if _kismet_running():
+        print("\n[*] Trying to stop Kismet server with SIGKILL...\n")
         os.system("sudo pkill -KILL -x kismet")
     return True
 
