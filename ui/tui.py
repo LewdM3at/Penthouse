@@ -140,7 +140,6 @@ class TUI:
     def _confirm_quit(self) -> bool:
         ans = self._yes_no_dialog("Quit Penthouse?")
         if ans:
-            curses.endwin()
             os.system("clear" if os.name == "posix" else "cls")
         return not ans
 
