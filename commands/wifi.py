@@ -104,7 +104,7 @@ def kismet_start_daemon():
     return True
 
 def connect_to_kismet():
-
+    print("Hello World")
 
 def stop_kismet_daemon():
     _run_interactive(f"kismet -c interfacename --daemonize")
