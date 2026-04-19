@@ -26,15 +26,16 @@ class MenuItem:
     A single node in the menu tree.
 
     Attributes:
-        label       : Display name shown in the TUI
-        description : Short description shown in the status bar
-        icon        : 1-3 char icon/emoji shown before the label
-        color_tag   : Logical color group (maps to a curses color pair)
-        children    : Sub-menu items (empty = leaf node)
-        action      : Callable executed when a leaf node is selected
-        action_args : Extra keyword arguments forwarded to action()
-        confirm     : Whether to ask "Are you sure?" before running
-        requires    : List of tool binaries this item needs (e.g. ["aircrack-ng"])
+        label           : Display name shown in the TUI
+        description     : Short description shown in the status bar
+        icon            : 1-3 char icon/emoji shown before the label
+        color_tag       : Logical color group (maps to a curses color pair)
+        children        : Sub-menu items (empty = leaf node)
+        action          : Callable executed when a leaf node is selected
+        action_args     : Extra keyword arguments forwarded to action()
+        confirm         : Whether to ask "Are you sure?" before running
+        requires        : List of tool binaries this item needs (e.g. ["aircrack-ng"])
+        status_factory  : Optional callable that returns a string to show in the status bar (e.g. to show current interface)
     """
     label: str
     description: str = ""
@@ -45,6 +46,7 @@ class MenuItem:
     action_args: dict = field(default_factory=dict)
     confirm: bool = False
     requires: List[str] = field(default_factory=list)
+    status_factory: Optional[Callable] = None
 
     # ------------------------------------------------------------------ #
     @property

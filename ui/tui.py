@@ -423,6 +423,17 @@ class TUI:
                 except curses.error:
                     pass
 
+        if item.status_factory:
+            try:
+                status = item.status_factory()
+            except Exception:
+                status = "unknown"
+            try:
+                s.addstr(row, panel_x + 2, status, get_color("tool_ok") if "RUNNING" in status else get_color("tool_missing"))
+            except curses.error:
+                pass
+            row += 1
+
     # ── Status bar ─────────────────────────────────────────────────────
     def _draw_status_bar(self):
         s = self.stdscr

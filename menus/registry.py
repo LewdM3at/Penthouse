@@ -91,13 +91,22 @@ def _wifi_menu() -> MenuItem:
                 description="Kismet is a sniffer, WIDS, and wardriving tool for Wi-Fi, Bluetooth, Zigbee, RF, and more, which runs on Linux and macOS.",
                 icon=" ",
                 color_tag=COLOR_WIFI,
+                status_factory=wifi_commands.kismet_status,
                 children=[
                     MenuItem(
                         label="Start Kismet Server",
                         description="Start the Kismet server",
-                        icon=" ",
+                        icon="⏻ ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.kismet_start_daemon,
+                        requires=["kismet"],
+                    ),
+                    MenuItem(
+                        label="Stop Kismet Server",
+                        description="Stop the Kismet server",
+                        icon="⭘ ",
+                        color_tag=COLOR_WIFI,
+                        action=wifi_commands.kismet_stop_daemon,
                         requires=["kismet"],
                     ),
                 ],

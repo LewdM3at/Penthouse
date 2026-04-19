@@ -96,6 +96,14 @@ def wifite_pin():
 
 # ─────────────────────────────────────────── Kismet ───────────────────
 
+def _kismet_running() -> bool:
+    import subprocess
+    result = subprocess.run(["pgrep", "-x", "kismet"], capture_output=True)
+    return result.returncode == 0
+
+def kismet_status() -> str:
+    return "● RUNNING" if _kismet_running() else "○ NOT RUNNING"
+
 def kismet_start_daemon():
     iface = _pick_wireless_iface()
     if not iface:
@@ -103,12 +111,14 @@ def kismet_start_daemon():
     _run_interactive(f"kismet -c {shlex.quote(iface)} --daemonize")
     return True
 
-def connect_to_kismet():
-    print("Hello World")
-
-def stop_kismet_daemon():
+def kismet_stop_daemon():
     _run_interactive(f"kismet -c interfacename --daemonize")
     return True
+
+def kismet_connect():
+    print("Hello World")
+
+
 
 # ─────────────────────────────────────────── aircrack-ng ──────────────
 
