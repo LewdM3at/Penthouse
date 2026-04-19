@@ -66,6 +66,7 @@ class TUI:
     # ================================================================== #
     def run(self):
         curses.wrapper(self._main)
+        os.system("clear" if os.name == "posix" else "cls")
 
     def _main(self, stdscr):
         self.stdscr = stdscr
@@ -82,7 +83,6 @@ class TUI:
             if not self._handle_key(key):
                 break
 
-        os.system("clear" if os.name == "posix" else "cls")
 
     # ================================================================== #
     #  Dimensions
