@@ -1,14 +1,15 @@
 from menus.node import (
     MenuItem,
-    COLOR_WIFI, COLOR_BLUETOOTH, COLOR_SUBGHZ, COLOR_RADIO,
+    COLOR_WIFI, COLOR_BLUETOOTH, COLOR_SUBGHZ, COLOR_RADIO, COLOR_NETWORKING,
     COLOR_RFID, COLOR_BT, COLOR_NET, COLOR_SYSTEM, COLOR_DEFAULT,
 )
-import commands.wifi     as wifi_commands
-import commands.bluetooth as bt_commands
-#import commands.radio    as radio_commands
-import commands.rfid     as rfid_commands
-#import commands.network  as net_commands
-#import commands.system   as sys_commands
+import commands.wifi        as wifi_commands
+import commands.bluetooth   as bt_commands
+#import commands.radio      as radio_commands
+import commands.rfid        as rfid_commands
+#import commands.network    as net_commands
+#import commands.system     as sys_commands
+import commands.networking  as networking_commands
 
 
 # ═══════════════════════════════════════════════════════════════════════ #
@@ -173,6 +174,31 @@ def _rfid_menu() -> MenuItem:
         ],
     )
 
+
+# ═══════════════════════════════════════════════════════════════════════ #
+#  Networking
+# ═══════════════════════════════════════════════════════════════════════ #
+
+def _networking_menu() -> MenuItem:
+    return MenuItem(
+        label="󰎘  Networking",
+        description="Networking attack & analysis tools",
+        icon="▸",
+        color_tag=COLOR_NETWORKING,
+        children=[
+            MenuItem(
+                label="NMAP",
+                description="Nmap ('Network Mapper') is a free and open source utility for network discovery and security auditing.",
+                icon="󰎘 ",
+                color_tag=COLOR_NETWORKING,
+                action=networking_commands.nmap_start,
+                requires=["nmap"],
+                confirm=True,
+            ),
+        ],
+    )
+
+
 # ═══════════════════════════════════════════════════════════════════════ #
 #  PUBLIC API
 # ═══════════════════════════════════════════════════════════════════════ #
@@ -182,6 +208,7 @@ def build_menu_tree():
         _wifi_menu(),
         _bluetooth_menu(),
         _rfid_menu(),
+        _networking_menu(),
         #_subghz_menu(),
         #_24ghz_menu(),
         #_network_menu(),

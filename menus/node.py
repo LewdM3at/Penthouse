@@ -1,23 +1,18 @@
-"""
-menus/node.py
-Defines the MenuItem and MenuTree data structures.
-Each node can be a category (with children) or a leaf (with an action).
-"""
-
 from dataclasses import dataclass, field
 from typing import Optional, List, Callable
 
 
 # Color tags map to curses color pair indices (defined in tui.py)
-COLOR_WIFI      = "wifi"
-COLOR_BLUETOOTH = "bluetooth"
-COLOR_SUBGHZ    = "subghz"
-COLOR_RADIO     = "radio"
-COLOR_RFID      = "rfid"
-COLOR_BT        = "bt"
-COLOR_NET       = "net"
-COLOR_SYSTEM    = "system"
-COLOR_DEFAULT   = "default"
+COLOR_WIFI          = "wifi"
+COLOR_BLUETOOTH     = "bluetooth"
+COLOR_SUBGHZ        = "subghz"
+COLOR_RADIO         = "radio"
+COLOR_NETWORKING    = "networking"
+COLOR_RFID          = "rfid"
+COLOR_BT            = "bt"
+COLOR_NET           = "net"
+COLOR_SYSTEM        = "system"
+COLOR_DEFAULT       = "default"
 
 
 @dataclass

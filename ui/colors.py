@@ -1,20 +1,3 @@
-"""
-ui/colors.py
-Curses color pair definitions and helper lookup.
-
-Color pair IDs are assigned here and referenced by logical name throughout
-the rest of the codebase — change them once, applies everywhere.
-
-Terminal palette used (256-colour):
-  Background : 232  (near-black)
-  Accent     : 46   (bright green  — WiFi)
-               208  (orange        — Sub-GHz)
-               51   (cyan          — 2.4 GHz / BT)
-               201  (magenta       — NFC)
-               27   (blue          — Network)
-               220  (yellow        — System)
-"""
-
 import curses
 
 
@@ -73,6 +56,8 @@ def init_colors():
         "radio":                _pair(208, BG),      # orange (same as subghz)
         "system":               _pair(220, BG),      # yellow
         "default":              _pair(252, BG),      # near-white
+        "networking":           _pair(120, BG),     
+        "selected_networking":  _pair(0,   46),
 
         # Availability
         "unavailable":     _pair(238, BG),      # greyed-out
