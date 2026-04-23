@@ -197,7 +197,7 @@ def _networking_menu() -> MenuItem:
                 children=[
                     MenuItem(
                         label="Setup Proxies",
-                        description="Setup network proxies for obfuscation (e.g. proxychains)",
+                        description="Setup network proxies for obfuscation (e.g. proxychains). Tries to open the config file with $VISUAL -› $EDITOR -› nano. Make sure to set VISUAL/EDITOR in your shell.",
                         icon="󰐚 ",
                         color_tag=COLOR_NETWORKING,
                         action=networking_commands.proxychains_setup,
