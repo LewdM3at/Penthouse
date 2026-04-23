@@ -35,9 +35,11 @@ def proxychains_setup():
         return True
 
     # Step 3 — copy system config to user dir
-    import shutil
-    shutil.copy2(system_conf, proxy_conf)
-    print(f"\n[*] Copied {system_conf} to {proxy_conf}\n")
+    if not os.path.isfile(proxy_conf):
+        import shutil
+        shutil.copy2(system_conf, proxy_conf)
+        print(f"\n[*] Copied {system_conf} to {proxy_conf}\n")
+        return True
 
     # Step 4 — open with preferred editor
     editor = os.environ.get("VISUAL") or os.environ.get("EDITOR") or "nano"
