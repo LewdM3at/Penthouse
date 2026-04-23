@@ -48,16 +48,10 @@ def init_colors():
         "selected_wifi":        _pair(0,   46),      # bright green
         "bluetooth":            _pair(45,  BG),      # light blue
         "selected_bluetooth":   _pair(0,   33),      # bright blue
-        "subghz":               _pair(208, BG),      # orange
-        "bt":                   _pair(51,  BG),      # cyan
         "rfid":                 _pair(213, BG),      # magenta
         "selected_rfid":        _pair(0,   207),     # bright magenta
-        "net":                  _pair(27,  BG),      # blue
-        "radio":                _pair(208, BG),      # orange (same as subghz)
-        "system":               _pair(220, BG),      # yellow
-        "default":              _pair(252, BG),      # near-white
-        "networking":           _pair(120, BG),     
-        "selected_networking":  _pair(0,   46),
+        "networking":           _pair(208, BG),      # orange
+        "selected_networking":  _pair(0,   202),     # bright orange
 
         # Availability
         "unavailable":     _pair(238, BG),      # greyed-out

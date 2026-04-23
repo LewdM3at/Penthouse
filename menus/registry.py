@@ -27,6 +27,7 @@ def _wifi_menu() -> MenuItem:
                 description="Automated wireless auditor",
                 icon="󰭥 ",
                 color_tag=COLOR_WIFI,
+                requires=["wifite"],
                 children=[
                     MenuItem(
                         label="Automated Audit",
@@ -81,6 +82,7 @@ def _wifi_menu() -> MenuItem:
                 icon=" ",
                 color_tag=COLOR_WIFI,
                 status_factory=wifi_commands.kismet_status,
+                requires=["kismet"],
                 children=[
                     MenuItem(
                         label="Start Kismet Server",
@@ -181,19 +183,44 @@ def _rfid_menu() -> MenuItem:
 
 def _networking_menu() -> MenuItem:
     return MenuItem(
-        label="󰎘  Networking",
+        label="  Networking",
         description="Networking attack & analysis tools",
         icon="▸",
         color_tag=COLOR_NETWORKING,
         children=[
             MenuItem(
+                label="ProxyChains",
+                description="ProxyChains is a UNIX program, that hooks network-related libc functions in dynamically linked programs via a preloaded DLL and redirects the connections through SOCKS4a/5 or HTTP proxies.",
+                icon=" ",
+                color_tag=COLOR_NETWORKING,
+                requires=["proxychains"],
+                children=[
+                    MenuItem(
+                        label="Setup Proxies",
+                        description="Setup network proxies for obfuscation (e.g. proxychains)",
+                        icon="󰐚 ",
+                        color_tag=COLOR_NETWORKING,
+                        action=networking_commands.proxychains_setup,
+                        requires=["proxychains"],
+                    ),
+                ],
+            ),
+            MenuItem(
                 label="NMAP",
                 description="Nmap ('Network Mapper') is a free and open source utility for network discovery and security auditing.",
-                icon="󰎘 ",
+                icon="󰈈 ",
                 color_tag=COLOR_NETWORKING,
-                action=networking_commands.nmap_start,
                 requires=["nmap"],
-                confirm=True,
+                children=[
+                    MenuItem(
+                        label="Setup Proxies",
+                        description="Setup network proxies for obfuscation (e.g. proxychains)",
+                        icon="󰐚 ",
+                        color_tag=COLOR_NETWORKING,
+                        action=wifi_commands.kismet_start_daemon,
+                        requires=["kismet"],
+                    ),
+                ],
             ),
         ],
     )
