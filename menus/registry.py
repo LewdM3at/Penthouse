@@ -155,6 +155,7 @@ def _bluetooth_menu() -> MenuItem:
                         color_tag=COLOR_BLUETOOTH,
                         action=bt_commands.bettercap_start_webui,
                         requires=["bettercap"],
+                        confirm=True,
                     ),
                     MenuItem(
                         label="Start Bettercap CLI",
@@ -163,6 +164,7 @@ def _bluetooth_menu() -> MenuItem:
                         color_tag=COLOR_BLUETOOTH,
                         action=bt_commands.bettercap_start,
                         requires=["bettercap"],
+                        confirm=True,
                     ),
                 ],
             )
