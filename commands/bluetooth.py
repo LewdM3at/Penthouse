@@ -31,25 +31,34 @@ def bettercap_start_webui():
     )
 
     print("\n[*] Waiting for Bettercap WebUI to start...")
-    for _ in range(20):  # try for up to 10 seconds
+    for _ in range(20):
         try:
             urllib.request.urlopen("http://localhost:8080", timeout=1)
-            break  # server is up
+            break
         except Exception:
             time.sleep(0.5)
     else:
-        print("\n[!] Bettercap WebUI did not start in time.\n")
+        print("[!] Bettercap WebUI did not start in time.")
         proc.terminate()
         return
 
-    print("\n[*] Opening http://localhost:8080 ...\n")
+    print("[*] Opening http://localhost:8080 ...")
     opened = webbrowser.open("http://localhost:8080")
     if not opened:
-        print("\n[*] Could not open browser. Navigate to: http://localhost:8080\n")
+        print("[*] Could not open browser. Navigate to: http://localhost:8080")
 
-    input("\n[*] Press Enter to stop Bettercap...\n")
-    proc.terminate()
-    proc.wait()
+    print("\n[*] Bettercap is running. Press Ctrl+C to stop.\n")
+    try:
+        proc.wait()  # just block until bettercap dies on its own
+    except KeyboardInterrupt:
+        pass
+    finally:
+        print("\n[*] Stopping Bettercap...")
+        proc.terminate()
+        try:
+            proc.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            proc.kill()
 
 def bettercap_start():
     _clear_screen()
