@@ -48,7 +48,7 @@ def proxychains_setup():
 
 # ─────────────────────────────────────────── NMAP ───────────────────────────────
 
-def nmap_start():
+def nmap_host_discovery():
     _clear_screen()
     _run_interactive(f"man nmap")
     return False
