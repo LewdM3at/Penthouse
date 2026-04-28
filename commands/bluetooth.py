@@ -30,7 +30,7 @@ def bettercap_start_webui():
 
 def bettercap_start():
     _clear_screen()
-    _run_interactive(f'sudo bettercap -eval "ui on" -silent')
+    _run_interactive(f'sudo bettercap')
     return False
 
 
