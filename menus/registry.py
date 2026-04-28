@@ -146,9 +146,25 @@ def _bluetooth_menu() -> MenuItem:
                 description="The Swiss Army knife for WiFi, Bluetooth Low Energy, wireless HID hijacking, CAN-bus and IPv4 and IPv6 networks reconnaissance and MITM attacks.",
                 icon="󰂯 ",
                 color_tag=COLOR_BLUETOOTH,
-                action=bt_commands.bettercap_start,
                 requires=["bettercap"],
-                confirm=True,
+                children=[
+                    MenuItem(
+                        label="Start Bettercap WebUI",
+                        description="Start the Bettercap WebUI",
+                        icon="󰾔 ",
+                        color_tag=COLOR_BLUETOOTH,
+                        action=bt_commands.bettercap_start_webui,
+                        requires=["bettercap"],
+                    ),
+                    MenuItem(
+                        label="Start Bettercap CLI",
+                        description="Start the Bettercap CLI",
+                        icon=" ",
+                        color_tag=COLOR_BLUETOOTH,
+                        action=bt_commands.bettercap_start,
+                        requires=["bettercap"],
+                    ),
+                ],
             )
         ],
     )
