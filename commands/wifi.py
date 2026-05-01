@@ -66,27 +66,27 @@ def _run_interactive(cmd: str):
 
 def auto_audit():
     _clear_screen()
-    _run_interactive(f"sudo wifite --daemon")
+    _run_interactive(f"sudo wifite")
     return True
 
 def wifite_handshake():
     _clear_screen()
-    _run_interactive(f"sudo wifite --no-pmkid --no-wps --skip-crack --daemon")
+    _run_interactive(f"sudo wifite --no-pmkid --no-wps --skip-crack")
     return True
 
 def wifite_pmkid():
     _clear_screen()
-    _run_interactive(f"sudo wifite --pmkid --skip-crack --daemon")
+    _run_interactive(f"sudo wifite --pmkid --skip-crack")
     return True
 
 def wifite_pixiedust():
     _clear_screen()
-    _run_interactive(f"sudo wifite --pixie --no-pmkid --wps-only --daemon")
+    _run_interactive(f"sudo wifite --pixie --no-pmkid --wps-only")
     return True
 
 def wifite_pin():
     _clear_screen()
-    _run_interactive(f"sudo wifite --no-pixie --no-pmkid --wps-only --daemon")
+    _run_interactive(f"sudo wifite --no-pixie --no-pmkid --wps-only")
     return True
 
 # ─────────────────────────────────────────── Kismet ───────────────────

@@ -31,7 +31,7 @@ def _wifi_menu() -> MenuItem:
                 children=[
                     MenuItem(
                         label="Automated Audit",
-                        description="Run automated wireless audit (sudo wifite --daemon)",
+                        description="Run automated wireless audit (sudo wifite)",
                         icon="󱜙 ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.auto_audit,
@@ -40,7 +40,7 @@ def _wifi_menu() -> MenuItem:
                     ),
                     MenuItem(
                         label="Handshake Capture",
-                        description="Capture WPA/WPA2 handshakes (sudo wifite --no-pmkid --no-wps --daemon)",
+                        description="Capture WPA/WPA2 handshakes (sudo wifite --no-pmkid --no-wps --skip-crack)",
                         icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_handshake,
@@ -48,8 +48,8 @@ def _wifi_menu() -> MenuItem:
                         confirm=True,
                     ),
                     MenuItem(
-                        label="PMKID Attack",
-                        description="Clientless PMKID hash capture (sudo wifite --pmkid --daemon)",
+                        label="PMKID Capture",
+                        description="Clientless PMKID hash capture (sudo wifite --pmkid --skip-crack)",
                         icon=" ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_pmkid,
@@ -58,7 +58,7 @@ def _wifi_menu() -> MenuItem:
                     ),
                     MenuItem(
                         label="PixieDust Attack",
-                        description="Attack WPS-enabled routers (sudo wifite --pixie --no-pmkid --wps-only --daemon)",
+                        description="Attack WPS-enabled routers (sudo wifite --pixie --no-pmkid --wps-only)",
                         icon="󱊨 ",
                         color_tag=COLOR_WIFI,
                         action=wifi_commands.wifite_pixiedust,
