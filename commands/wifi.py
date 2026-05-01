@@ -71,12 +71,12 @@ def auto_audit():
 
 def wifite_handshake():
     _clear_screen()
-    _run_interactive(f"sudo wifite --no-pmkid --no-wps --daemon")
+    _run_interactive(f"sudo wifite --no-pmkid --no-wps --skip-crack --daemon")
     return True
 
 def wifite_pmkid():
     _clear_screen()
-    _run_interactive(f"sudo wifite --pmkid --daemon")
+    _run_interactive(f"sudo wifite --pmkid --skip-crack --daemon")
     return True
 
 def wifite_pixiedust():
